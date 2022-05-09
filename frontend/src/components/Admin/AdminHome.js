@@ -13,7 +13,7 @@ export default function AdminHome() {
 
     return (
         <div>
-            <Nav variant="tabs" defaultActiveKey={"/login"}>
+            <Navbar bg="dark" variant="dark" defaultActiveKey={"/login"}>
                 <Container>
                     <Navbar.Brand href="/admin/addFood">Admin</Navbar.Brand>
                     <Nav className="me-auto">
@@ -22,7 +22,7 @@ export default function AdminHome() {
                         <Nav.Link disabled={JSON.parse(localStorage.getItem("user")).restaurant == null ? "disabled" : ""} href="/admin/addRestaurant">Add Restaurant</Nav.Link>
                     </Nav>
                 </Container>
-            </Nav>
+            </Navbar>
             <Outlet />
         </div>
     );

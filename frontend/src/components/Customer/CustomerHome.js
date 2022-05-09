@@ -18,7 +18,7 @@ export default function CustomerHome() {
 
     return (
         <div>
-            <Nav variant="tabs">
+            <Navbar bg="dark" variant="dark">
                 <Container>
                     <Navbar.Brand href="/customer/">Customer</Navbar.Brand>
                     <Nav className="me-auto">
@@ -26,7 +26,7 @@ export default function CustomerHome() {
                         <Nav.Link href="/customer/viewMenu">View Menu</Nav.Link>
                     </Nav>
                 </Container>
-            </Nav>
+            </Navbar>
             <Outlet />
         </div>
     );

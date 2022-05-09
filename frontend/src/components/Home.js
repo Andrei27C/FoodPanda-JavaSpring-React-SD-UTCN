@@ -14,7 +14,7 @@ export default function Home () {
 
     return (
         <div>
-            <Nav variant="tabs" defaultActiveKey={"/login"}>
+            <Navbar bg="dark" variant={"dark"}  defaultActiveKey={"/login"}>
                 <Container>
                     <Navbar.Brand href="/">Food Panda</Navbar.Brand>
                     <Nav className="me-auto">
@@ -22,7 +22,7 @@ export default function Home () {
                         <Nav.Link href="/login">Log In</Nav.Link>
                     </Nav>
                 </Container>
-            </Nav>
+            </Navbar>
             <Card className="Home">
                 <Card.Body>Bine Ai Venit La Food Panda!</Card.Body>
             </Card>
