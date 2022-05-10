@@ -14,6 +14,9 @@ import ro.sd.firstapp.repository.AdminRepo;
 import ro.sd.firstapp.repository.CustomerRepo;
 import java.util.Optional;
 
+/**
+ * Service used to handle the UserData model
+ */
 @Service
 public class UserDataService {
     @Autowired
@@ -22,6 +25,11 @@ public class UserDataService {
     @Autowired
     private CustomerRepo customerRepo;
 
+    /**
+     * Retrieves an user account from the database
+     * @param username of the account
+     * @return the DTO of the retrieved account
+     */
     public UserDataDTO findByUsername(String username) {
         Optional<Admin> admin = adminRepo.findByUsername(username);
         if (admin.isPresent()) {
@@ -36,6 +44,11 @@ public class UserDataService {
         }
     }
 
+    /**
+     * Retrieves an user data account by LoginDTO (containing username and password)
+     * @param loginDTO containing username and password
+     * @return the DTO of the retrieved user data
+     */
     public UserDataDTO getUserDataDTO(LoginDTO loginDTO) throws Exception {
         UserDataDTO userDataDTO = this.findByUsername(loginDTO.getUsername());
         if (userDataDTO == null) {
@@ -49,6 +62,11 @@ public class UserDataService {
         throw new Exception("Incorrect Password!");
     }
 
+    /**
+     * Logins an account
+     * @param loginDTO containing username and password
+     * @return the DTO of the logged in account
+     */
     public UserDataDTO logIn(LoginDTO loginDTO) throws Exception {
         return this.getUserDataDTO(loginDTO);
     }

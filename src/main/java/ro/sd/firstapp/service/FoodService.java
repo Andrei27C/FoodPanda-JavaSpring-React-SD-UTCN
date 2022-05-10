@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Service used to handle the Food model
+ */
 @Service
 public class FoodService {
 
@@ -23,6 +26,11 @@ public class FoodService {
     private RestaurantService restaurantService;
 
 
+    /**
+     * Retrieves a food item by restaurant.
+     * @param restaurantName of the restaurant from which the food belongs to
+     * @return the retrieved food
+     */
     public List<FoodDTO> findByRestaurant(String restaurantName){
         Restaurant restaurant = restaurantService.findByName(restaurantName);
 
@@ -34,6 +42,10 @@ public class FoodService {
                 .collect(Collectors.toList())).orElseGet(ArrayList::new);
     }
 
+    /**
+     * Retrieves all food items.
+     * @return A List containing all the retrieved food
+     */
     public List<FoodDTO> findAll(){
         Optional<List<Food>> foods = Optional.ofNullable(foodRepo.findAll());
 
@@ -43,7 +55,11 @@ public class FoodService {
     }
 
 
-
+    /**
+     * Saves a food item to the database.
+     * @param foodDTO containing the details of the food
+     * @return The saved instance of the food item.
+     */
     public FoodDTO save(FoodDTO foodDTO){
         Restaurant restaurant = restaurantService.findByName(foodDTO.getRestaurantDTO().getName());
 

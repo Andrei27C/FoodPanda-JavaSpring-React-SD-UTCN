@@ -16,6 +16,9 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Service used to handle the Restaurant model
+ */
 @Service
 public class RestaurantService {
 
@@ -28,11 +31,21 @@ public class RestaurantService {
     @Autowired
     private ZoneService zoneService;
 
+    /**
+     * Retrieves a restaurant from the database by its name.
+     * @param name of the restaurant
+     * @return The found restaurant.
+     */
     public Restaurant findByName(String name) {
         Optional<Restaurant> restaurant = restaurantRepo.findByName(name);
         return restaurant.orElse(null);
     }
 
+    /**
+     * Saves a new restaurant to the database.
+     * @param restaurantDTO containing the details of the new restaurant
+     * @return The saved restaurant instance.
+     */
     public RestaurantDTO save(RestaurantDTO restaurantDTO){
 
         Admin admin = adminService.findByUsername(restaurantDTO.getAdminDTO().getUsername());
@@ -57,6 +70,10 @@ public class RestaurantService {
         return RestaurantMapper.getInstance().convertToDTO(restaurantRepo.save(restaurant));
     }
 
+    /**
+     * Retrieves all restaurants from the database.
+     * @return A List containing all restaurants.
+     */
     public List<RestaurantDTO> findAll() {
         return restaurantRepo.findAll().stream()
                 .map(RestaurantMapper.getInstance()::convertToDTO)
