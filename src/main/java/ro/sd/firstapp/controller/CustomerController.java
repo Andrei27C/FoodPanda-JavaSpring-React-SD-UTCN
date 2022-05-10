@@ -1,5 +1,7 @@
 package ro.sd.firstapp.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
@@ -26,8 +28,12 @@ public class CustomerController {
     @Autowired
     private FoodService foodService;
 
+    private final static Logger logger = LoggerFactory.getLogger(CustomerController.class.getName());
+
+
     @PostMapping("/register")
-    public ResponseEntity<CustomerDTO> registerCustomer(@RequestBody(required = false) CustomerDTO customerDTO) throws Exception {
+    public ResponseEntity<CustomerDTO> registerCustomer(@RequestBody(required = false) CustomerDTO customerDTO) {
+        logger.info("Customer {} registered", customerDTO.getUsername());
         return new ResponseEntity<>(customerService.register(customerDTO), HttpStatus.CREATED);
     }
 

@@ -1,5 +1,7 @@
 package ro.sd.firstapp.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.sd.firstapp.model.Customer;
@@ -17,6 +19,7 @@ public class CustomerService {
 
     @Autowired
     private CustomerRepo customerRepo;
+    private final static Logger logger = LoggerFactory.getLogger(CustomerService.class.getName());
 
     /**
      * Searches for an customer in the database by username
@@ -24,6 +27,8 @@ public class CustomerService {
      * @return the found customer
      */
     public Customer findByUsername(String username) {
+        logger.info("Find customer: {}", username);
+
         Optional<Customer> customer = customerRepo.findByUsername(username);
 
         return customer.orElse(null);
@@ -37,6 +42,7 @@ public class CustomerService {
     public CustomerDTO register(CustomerDTO customerDTO) {
         Customer c = CustomerMapper.getInstance().convertFromDTO(customerDTO);
         customerRepo.save(c);
+        logger.info("Register customer: {}", customerDTO.getUsername());
 
         return CustomerMapper.getInstance().convertToDTO(c);
     }

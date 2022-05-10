@@ -1,5 +1,7 @@
 package ro.sd.firstapp.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.sd.firstapp.model.Admin;
@@ -19,6 +21,7 @@ import java.util.stream.Collectors;
 public class AdminService {
     @Autowired
     private AdminRepo adminRepo;
+    private final static Logger logger = LoggerFactory.getLogger(AdminService.class.getName());
 
     /**
      * Saves in the database
@@ -26,6 +29,7 @@ public class AdminService {
      * @return the saved administrator
      */
     public Admin save(Admin administrator) {
+        logger.info("Admin {} saved to database", administrator);
         Admin a = Admin.AdminBuilder()
                 .username(administrator.getUsername())
                 .firstName(administrator.getFirstName())
@@ -41,6 +45,8 @@ public class AdminService {
      * @return the admin
      */
     public Admin findByUsername(String username) {
+        logger.info("Retrieve administrator: {} from the database", username);
+
         Optional<Admin> administrator = adminRepo.findByUsername(username);
 
         return administrator.orElse(null);

@@ -1,5 +1,7 @@
 package ro.sd.firstapp.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.sd.firstapp.model.Admin;
@@ -31,12 +33,16 @@ public class RestaurantService {
     @Autowired
     private ZoneService zoneService;
 
+    private final static Logger logger = LoggerFactory.getLogger(RestaurantService.class.getName());
+
+
     /**
      * Retrieves a restaurant from the database by its name.
      * @param name of the restaurant
      * @return The found restaurant.
      */
     public Restaurant findByName(String name) {
+        logger.info("Get restaurant with name {}", name);
         Optional<Restaurant> restaurant = restaurantRepo.findByName(name);
         return restaurant.orElse(null);
     }
@@ -47,7 +53,7 @@ public class RestaurantService {
      * @return The saved restaurant instance.
      */
     public RestaurantDTO save(RestaurantDTO restaurantDTO){
-
+        logger.info("Save restaurant {} to database", restaurantDTO.getName());
         Admin admin = adminService.findByUsername(restaurantDTO.getAdminDTO().getUsername());
 
         String address = restaurantDTO.getAddress();
@@ -75,6 +81,7 @@ public class RestaurantService {
      * @return A List containing all restaurants.
      */
     public List<RestaurantDTO> findAll() {
+        logger.info("Find all restaurants from the database");
         return restaurantRepo.findAll().stream()
                 .map(RestaurantMapper.getInstance()::convertToDTO)
                 .collect(Collectors.toList());

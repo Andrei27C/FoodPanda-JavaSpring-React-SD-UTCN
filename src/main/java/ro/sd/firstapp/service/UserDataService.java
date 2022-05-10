@@ -1,5 +1,7 @@
 package ro.sd.firstapp.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.sd.firstapp.model.Admin;
@@ -25,12 +27,15 @@ public class UserDataService {
     @Autowired
     private CustomerRepo customerRepo;
 
+    private final static Logger logger = LoggerFactory.getLogger(UserDataService.class.getName());
+
     /**
      * Retrieves an user account from the database
      * @param username of the account
      * @return the DTO of the retrieved account
      */
     public UserDataDTO findByUsername(String username) {
+        logger.info("Find account with username: {}", username);
         Optional<Admin> admin = adminRepo.findByUsername(username);
         if (admin.isPresent()) {
             //delete
@@ -52,6 +57,7 @@ public class UserDataService {
     public UserDataDTO getUserDataDTO(LoginDTO loginDTO) throws Exception {
         UserDataDTO userDataDTO = this.findByUsername(loginDTO.getUsername());
         if (userDataDTO == null) {
+            logger.warn("No account with the username: {} was found", loginDTO.getUsername());
             throw new Exception("No userData found");
         }
         UserData userData = UserDataMapper.getInstance().convertFromDTO(userDataDTO);
@@ -68,6 +74,7 @@ public class UserDataService {
      * @return the DTO of the logged in account
      */
     public UserDataDTO logIn(LoginDTO loginDTO) throws Exception {
+        logger.info("Logged in {}", loginDTO.getUsername());
         return this.getUserDataDTO(loginDTO);
     }
 }

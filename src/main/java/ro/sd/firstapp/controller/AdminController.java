@@ -1,5 +1,7 @@
 package ro.sd.firstapp.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
@@ -34,9 +36,12 @@ public class AdminController {
     @Autowired
     private FoodService foodService;
 
+    private final static Logger logger = LoggerFactory.getLogger(AdminController.class.getName());
+
     @GetMapping("/get")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public AdminDTO getCurrentAdmin(@Param("adminUsername") String adminUsername) {
+        logger.info("Obtain admin {} data.", adminUsername);
         return AdminMapper.getInstance().convertToDTO(AdminService.findByUsername(adminUsername));
     }
 
@@ -52,6 +57,7 @@ public class AdminController {
 
     @PostMapping("/addRestaurant")
     public ResponseEntity<RestaurantDTO> addRestaurant(@RequestBody(required = false) RestaurantDTO restaurantDTO) {
+        logger.info("Add restaurant {}", restaurantDTO.getName());
         return new ResponseEntity<>(restaurantService.save(restaurantDTO), HttpStatus.CREATED);
     }
 
@@ -64,12 +70,14 @@ public class AdminController {
 
     @PostMapping("/addFood")
     public ResponseEntity<FoodDTO> addFood(@RequestBody(required = false) FoodDTO foodDTO) {
+        logger.info("Add food {}", foodDTO.getName());
         return new ResponseEntity<>(foodService.save(foodDTO), HttpStatus.CREATED);
     }
 
     @GetMapping("/viewMenu")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<List<FoodDTO>> getFoods(@Param("restaurantName") String restaurantName) {
+        logger.info("View the MENU");
         return new ResponseEntity<>(foodService.findByRestaurant(restaurantName), HttpStatus.ACCEPTED);
     }
 }

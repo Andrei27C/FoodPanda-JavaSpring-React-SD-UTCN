@@ -1,5 +1,7 @@
 package ro.sd.firstapp.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.sd.firstapp.model.Food;
@@ -25,6 +27,7 @@ public class FoodService {
     @Autowired
     private RestaurantService restaurantService;
 
+    private final static Logger logger = LoggerFactory.getLogger(FoodService.class.getName());
 
     /**
      * Retrieves a food item by restaurant.
@@ -33,10 +36,8 @@ public class FoodService {
      */
     public List<FoodDTO> findByRestaurant(String restaurantName){
         Restaurant restaurant = restaurantService.findByName(restaurantName);
-
-
         Optional<List<Food>> foods = Optional.ofNullable(foodRepo.findByRestaurant(restaurant));
-
+        logger.info("Find foods by restaurant: {}", restaurantName);
         return foods.map(foodList -> foodList.stream()
                 .map(FoodMapper.getInstance()::convertToDTO)
                 .collect(Collectors.toList())).orElseGet(ArrayList::new);
@@ -48,6 +49,7 @@ public class FoodService {
      */
     public List<FoodDTO> findAll(){
         Optional<List<Food>> foods = Optional.ofNullable(foodRepo.findAll());
+        logger.info("Find all foods");
 
         return foods.map(foodList -> foodList.stream()
                 .map(FoodMapper.getInstance()::convertToDTO)
@@ -62,6 +64,7 @@ public class FoodService {
      */
     public FoodDTO save(FoodDTO foodDTO){
         Restaurant restaurant = restaurantService.findByName(foodDTO.getRestaurantDTO().getName());
+        logger.info("Save food {} to database", foodDTO.getName());
 
         Food food = Food.builder()
                 .name(foodDTO.getName())
