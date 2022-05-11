@@ -11,6 +11,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
+@Builder
+@AllArgsConstructor
 @Entity
 @Table(name = "food_category")
 public class FoodCategory {

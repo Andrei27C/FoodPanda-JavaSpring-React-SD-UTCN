@@ -58,4 +58,3 @@ ro\sd\firstapp\model\UserData.class
 ro\sd\firstapp\controller\CustomerController.class
 ro\sd\firstapp\controller\HomeController.class
 ro\sd\firstapp\controller\UserDataController.class
-ro\sd\firstapp\service\OrderService.class

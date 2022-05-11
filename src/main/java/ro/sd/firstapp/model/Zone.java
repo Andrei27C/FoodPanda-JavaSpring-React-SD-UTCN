@@ -11,7 +11,9 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
+@AllArgsConstructor
 @ToString
+@Builder
 @Table(name = "zone")
 public class Zone {
     @Id

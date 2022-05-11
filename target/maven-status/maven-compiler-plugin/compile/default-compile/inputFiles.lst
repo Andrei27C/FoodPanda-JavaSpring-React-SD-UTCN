@@ -1,5 +1,4 @@
 C:\Users\csatl\Desktop\Facultate\An 3-sem2\SD\labs\assignment2\src\main\java\ro\sd\firstapp\model\mapper\Mapper.java
-C:\Users\csatl\Desktop\Facultate\An 3-sem2\SD\labs\assignment2\src\main\java\ro\sd\firstapp\repository\UserDataRepository.java
 C:\Users\csatl\Desktop\Facultate\An 3-sem2\SD\labs\assignment2\src\main\java\ro\sd\firstapp\controller\UserDataController.java
 C:\Users\csatl\Desktop\Facultate\An 3-sem2\SD\labs\assignment2\src\main\java\ro\sd\firstapp\model\Zone.java
 C:\Users\csatl\Desktop\Facultate\An 3-sem2\SD\labs\assignment2\src\main\java\ro\sd\firstapp\repository\FoodCategoryRepository.java
@@ -11,7 +10,6 @@ C:\Users\csatl\Desktop\Facultate\An 3-sem2\SD\labs\assignment2\src\main\java\ro\
 C:\Users\csatl\Desktop\Facultate\An 3-sem2\SD\labs\assignment2\src\main\java\ro\sd\firstapp\service\CustomerService.java
 C:\Users\csatl\Desktop\Facultate\An 3-sem2\SD\labs\assignment2\src\main\java\ro\sd\firstapp\repository\RestaurantRepo.java
 C:\Users\csatl\Desktop\Facultate\An 3-sem2\SD\labs\assignment2\src\main\java\ro\sd\firstapp\model\dto\ZoneDTO.java
-C:\Users\csatl\Desktop\Facultate\An 3-sem2\SD\labs\assignment2\src\main\java\ro\sd\firstapp\service\OrderService.java
 C:\Users\csatl\Desktop\Facultate\An 3-sem2\SD\labs\assignment2\src\main\java\ro\sd\firstapp\model\dto\LoginDTO.java
 C:\Users\csatl\Desktop\Facultate\An 3-sem2\SD\labs\assignment2\src\main\java\ro\sd\firstapp\service\FoodService.java
 C:\Users\csatl\Desktop\Facultate\An 3-sem2\SD\labs\assignment2\src\main\java\ro\sd\firstapp\service\validator\PasswordValidator.java
